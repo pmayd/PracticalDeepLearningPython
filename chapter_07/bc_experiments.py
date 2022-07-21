@@ -12,8 +12,15 @@ def run(x_train, y_train, x_test, y_test, clf):
     print()
 
 def main():
-    x = np.load("../data/breast/bc_features_standard.npy")
-    y = np.load("../data/breast/bc_labels.npy")
+    x = np.load("data/breast/bc_features_standard.npy")
+    y = np.load("data/breast/bc_labels.npy")
+    # reorder data
+    np.random.seed(12345)
+    idx = np.argsort(np.random.random(y.shape[0]))
+    x = x[idx]
+    y = y[idx] 
+    np.random.seed()
+    
     N = 455 
     x_train = x[:N];  x_test = x[N:]
     y_train = y[:N];  y_test = y[N:]
